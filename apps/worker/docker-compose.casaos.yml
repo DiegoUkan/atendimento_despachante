@@ -1,0 +1,23 @@
+name: atendimento-despachante
+
+services:
+  worker:
+    image: ghcr.io/diegoukan/atendimento-despachante-worker:latest
+    container_name: atendimento-despachante-worker
+    environment:
+      SUPABASE_URL: "https://izlctgakeabmrlkfoenm.supabase.co"
+      SUPABASE_SERVICE_ROLE_KEY: "COLE_A_CHAVE_SECRETA_AQUI"
+    restart: unless-stopped
+    stop_grace_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+x-casaos:
+  main: worker
+  title:
+    en_us: Atendimento Despachante Worker
+    pt_br: Worker do Atendimento Despachante
+  architectures: [amd64, arm64]

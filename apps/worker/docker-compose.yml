@@ -1,0 +1,16 @@
+# No servidor:  cd apps/worker && docker compose up -d --build
+services:
+  worker:
+    build:
+      context: ../..
+      dockerfile: apps/worker/Dockerfile
+    container_name: atendimento-worker
+    env_file: .env
+    restart: unless-stopped
+    ports:
+      - "8787:8787"   # /health (e o webhook da Evolution, quando ativado)
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

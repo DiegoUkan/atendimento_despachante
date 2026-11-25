@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proposta visual · Sóbria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --subtle: #f3f4f6;
+    --line: #e5e7eb;
+    --line-strong: #d1d5db;
+    --ink: #111827;
+    --ink-2: #4b5563;
+    --ink-3: #9ca3af;
+    --nav: #0f172a;
+    --nav-2: #1e293b;
+    --nav-ink: #cbd5e1;
+    --accent: #1d4ed8;
+    --accent-soft: #eff4ff;
+    --ok: #15803d;
+    --ok-soft: #ecfdf3;
+    --warn: #b45309;
+    --warn-soft: #fffbeb;
+    --bad: #b91c1c;
+    --bad-soft: #fef2f2;
+    --ai: #6d28d9;
+    --ai-soft: #f5f3ff;
+    --wa-in: #ffffff;
+    --wa-out: #e8f3ee;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.5 Inter, ui-sans-serif, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 32px 24px 64px; }
+  h1 { font-size: 22px; font-weight: 700; margin: 0 0 4px; letter-spacing: -0.01em; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 12px; }
+  p { margin: 0; }
+  .muted { color: var(--ink-2); }
+  .micro { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
+
+  /* comparação */
+  .intro { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; margin-bottom: 28px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+  .pad { padding: 18px 20px; }
+  table.cmp { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.cmp th, table.cmp td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.cmp th { font-weight: 600; color: var(--ink-2); font-size: 12px; }
+  table.cmp td:first-child { color: var(--ink-2); width: 120px; }
+  table.cmp tr:last-child td { border-bottom: 0; }
+  .swatches { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .sw { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--ink-2); }
+  .sw i { width: 22px; height: 22px; border-radius: 5px; border: 1px solid rgba(0,0,0,.08); display: inline-block; }
+
+  /* abas da prévia */
+  .tabs { display: inline-flex; gap: 2px; padding: 3px; background: var(--subtle); border: 1px solid var(--line); border-radius: 8px; margin-bottom: 12px; }
+  .tabs button { border: 0; background: transparent; padding: 6px 14px; border-radius: 6px; font: 500 13px Inter, sans-serif; color: var(--ink-2); cursor: pointer; }
+  .tabs button.on { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.06); }
+
+  /* moldura do app */
+  .app-scroll { overflow-x: auto; padding-bottom: 4px; }
+  .app { min-width: 1180px; display: grid; grid-template-columns: 216px 1fr; height: 640px; border: 1px solid var(--line-strong); border-radius: 12px; overflow: hidden; background: var(--bg); box-shadow: 0 10px 30px rgba(15,23,42,.08); }
+  .nav { background: var(--nav); color: var(--nav-ink); display: flex; flex-direction: column; padding: 14px 10px; }
+  .brand { display: flex; align-items: center; gap: 10px; padding: 4px 8px 16px; }
+  .brand .mark { width: 28px; height: 28px; border-radius: 7px; background: #fff; color: var(--nav); display: grid; place-items: center; font-weight: 700; font-size: 13px; }
+  .brand b { color: #fff; font-weight: 600; font-size: 14px; display: block; line-height: 1.1; }
+  .brand small { font-size: 11px; color: #94a3b8; }
+  .nav .sec { font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #64748b; padding: 14px 10px 6px; }
+  .nav a { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 6px; color: var(--nav-ink); text-decoration: none; font-size: 13px; }
+  .nav a:hover { background: var(--nav-2); color: #fff; }
+  .nav a.on { background: var(--nav-2); color: #fff; box-shadow: inset 2px 0 0 #60a5fa; }
+  .nav a .count { margin-left: auto; font-size: 11px; background: #334155; color: #e2e8f0; border-radius: 10px; padding: 0 7px; }
+  .nav svg { width: 16px; height: 16px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+  .nav .foot { margin-top: auto; border-top: 1px solid var(--nav-2); padding: 12px 8px 2px; display: flex; align-items: center; gap: 10px; font-size: 12px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex: none; }
+
+  .main { display: flex; flex-direction: column; min-width: 0; }
+  .topbar { height: 52px; flex: none; display: flex; align-items: center; gap: 12px; padding: 0 20px; background: var(--surface); border-bottom: 1px solid var(--line); }
+  .topbar h3 { margin: 0; font-size: 15px; font-weight: 600; }
+  .topbar .sp { flex: 1; }
+  .search { height: 32px; width: 260px; border: 1px solid var(--line); border-radius: 6px; padding: 0 10px; font: 13px Inter, sans-serif; color: var(--ink-3); display: flex; align-items: center; background: var(--subtle); }
+  .btn { height: 32px; padding: 0 12px; border-radius: 6px; font: 500 13px Inter, sans-serif; border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); display: inline-flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn.sm { height: 26px; padding: 0 9px; font-size: 12px; }
+  .btn.ghost { border-color: transparent; background: transparent; color: var(--ink-2); }
+  .btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+  .badge { display: inline-flex; align-items: center; gap: 5px; height: 20px; padding: 0 7px; border-radius: 4px; font-size: 11.5px; font-weight: 500; border: 1px solid var(--line); background: var(--subtle); color: var(--ink-2); white-space: nowrap; }
+  .badge.ok { background: var(--ok-soft); border-color: #bbf7d0; color: var(--ok); }
+  .badge.warn { background: var(--warn-soft); border-color: #fde68a; color: var(--warn); }
+  .badge.bad { background: var(--bad-soft); border-color: #fecaca; color: var(--bad); }
+  .badge.ai { background: var(--ai-soft); border-color: #ddd6fe; color: var(--ai); }
+  .badge.accent { background: var(--accent-soft); border-color: #c7d7fe; color: var(--accent); }
+  .view { display: none; flex: 1; min-height: 0; }
+  .view.on { display: flex; }
+
+  /* caixa de entrada */
+  .list { width: 290px; flex: none; border-right: 1px solid var(--line); background: var(--surface); overflow: auto; }
+  .filters { display: flex; gap: 4px; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+  .chip { font-size: 12px; padding: 3px 9px; border-radius: 5px; color: var(--ink-2); border: 1px solid transparent; }
+  .chip.on { background: var(--subtle); border-color: var(--line); color: var(--ink); font-weight: 500; }
+  .conv { display: flex; gap: 10px; padding: 11px 14px; border-bottom: 1px solid var(--line); cursor: default; }
+  .conv.on { background: var(--accent-soft); box-shadow: inset 2px 0 0 var(--accent); }
+  .av { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 600; color: var(--ink-2); background: var(--subtle); border: 1px solid var(--line); flex: none; }
+  .conv .t { display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 13px; }
+  .conv .t span.time { margin-left: auto; font-weight: 400; font-size: 11px; color: var(--ink-3); }
+  .conv .pv { color: var(--ink-2); font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .conv .meta { display: flex; gap: 6px; margin-top: 4px; align-items: center; }
+  .src { font-size: 11px; color: var(--ink-3); display: inline-flex; align-items: center; gap: 4px; }
+
+  .thread { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+  .thead { display: flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--surface); border-bottom: 1px solid var(--line); }
+  .thead b { font-size: 13.5px; white-space: nowrap; }
+  .thead .muted { white-space: nowrap; }
+  .seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 6px; overflow: hidden; margin-left: auto; }
+  .seg span { font-size: 12px; padding: 4px 10px; color: var(--ink-2); border-right: 1px solid var(--line); }
+  .seg span:last-child { border-right: 0; }
+  .seg span.on { background: var(--ink); color: #fff; }
+  .msgs { flex: 1; overflow: auto; padding: 16px 20px; display: flex; flex-direction: column; gap: 8px; background: #f2f3f5; }
+  .bub { max-width: 72%; padding: 8px 11px; border-radius: 8px; font-size: 13.5px; border: 1px solid var(--line); background: var(--wa-in); }
+  .bub.out { align-self: flex-end; background: var(--wa-out); border-color: #d3e9dd; }
+  .bub .who { font-size: 11px; font-weight: 600; color: var(--ink-2); margin-bottom: 2px; display: flex; gap: 6px; align-items: center; }
+  .bub .ft { font-size: 10.5px; color: var(--ink-3); text-align: right; margin-top: 3px; }
+  .bub.draft { border: 1px dashed #c4b5fd; background: #fbfaff; }
+  .bub .acts { display: flex; gap: 6px; margin-top: 8px; }
+  .compose { display: flex; gap: 8px; padding: 10px 14px; background: var(--surface); border-top: 1px solid var(--line); }
+  .compose .in { flex: 1; height: 34px; border: 1px solid var(--line); border-radius: 6px; padding: 0 10px; display: flex; align-items: center; color: var(--ink-3); font-size: 13px; }
+
+  .side { width: 330px; flex: none; border-left: 1px solid var(--line); background: var(--surface); overflow: auto; }
+  .side .sec { padding: 14px 16px; border-bottom: 1px solid var(--line); }
+  .kv { display: grid; grid-template-columns: 110px 1fr; gap: 6px 10px; font-size: 12.5px; margin-top: 8px; }
+  .kv dt { color: var(--ink-3); }
+  .kv dd { margin: 0; }
+  .steps { display: flex; gap: 3px; margin-top: 10px; }
+  .steps i { height: 4px; flex: 1; border-radius: 2px; background: var(--line); }
+  .steps i.done { background: var(--ok); }
+  .steps i.cur { background: var(--accent); }
+  .why { background: var(--subtle); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: 12.5px; color: var(--ink-2); margin-top: 8px; }
+  .acts-list { list-style: none; padding: 0; margin: 8px 0 0; display: flex; flex-direction: column; gap: 6px; }
+  .acts-list li { display: flex; gap: 8px; align-items: flex-start; font-size: 12.5px; }
+  .acts-list svg { width: 14px; height: 14px; margin-top: 3px; stroke: var(--ink-3); fill: none; stroke-width: 2; flex: none; }
+  .bar { height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+  .bar i { display: block; height: 100%; background: var(--ok); }
+  .plate { display: inline-flex; flex-direction: column; border: 1px solid #334155; border-radius: 3px; overflow: hidden; font: 600 11px ui-monospace, Menlo, monospace; line-height: 1; background: #fff; vertical-align: middle; }
+  .plate span:first-child { background: #1e3a8a; height: 4px; }
+  .plate span:last-child { padding: 2px 6px; letter-spacing: .1em; }
+
+  /* casos */
+  .board { display: flex; gap: 12px; padding: 16px; overflow: auto; flex: 1; }
+  .col { width: 230px; flex: none; display: flex; flex-direction: column; gap: 8px; }
+  .col h4 { margin: 0; font-size: 12px; font-weight: 600; color: var(--ink-2); display: flex; align-items: center; gap: 8px; padding: 2px 2px 6px; border-bottom: 2px solid var(--line); }
+  .col h4 .n { margin-left: auto; color: var(--ink-3); font-weight: 500; }
+  .kc { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: 12.5px; }
+  .kc .top { display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: var(--ink-3); }
+  .kc .top b { color: var(--ink-2); font-weight: 600; }
+  .kc .nm { font-weight: 600; font-size: 13px; margin: 4px 0 6px; }
+  .kc .row { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+
+  /* painel */
+  .dash { flex: 1; overflow: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+  .kpi .v { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; margin-top: 4px; }
+  .kpi .d { font-size: 12px; color: var(--ink-3); }
+  .grid2 { display: grid; grid-template-columns: 1fr 1.6fr; gap: 12px; }
+  .tbl { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .tbl th { text-align: left; font-weight: 500; color: var(--ink-3); font-size: 11.5px; padding: 8px 14px; border-bottom: 1px solid var(--line); }
+  .tbl td { padding: 9px 14px; border-bottom: 1px solid var(--line); }
+  .tbl tr:last-child td { border-bottom: 0; }
+  .pend { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid var(--line); font-size: 13px; }
+  .pend:last-child { border-bottom: 0; }
+  .pend b { font-weight: 600; min-width: 24px; text-align: center; }
+
+  /* componentes */
+  .kit { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+  .row-gap { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .field { display: block; margin-top: 10px; }
+  .field span { display: block; font-size: 12px; font-weight: 500; margin-bottom: 4px; }
+  .input { height: 34px; border: 1px solid var(--line-strong); border-radius: 6px; padding: 0 10px; display: flex; align-items: center; font-size: 13px; color: var(--ink); background: #fff; }
+  .input.focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(29,78,216,.12); }
+  .note { margin-top: 28px; font-size: 13px; color: var(--ink-2); }
+  @media (max-width: 900px) { .intro, .kit { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="micro">Proposta de identidade visual · alternativa</div>
+  <h1>Versão sóbria: profissional, densa e neutra</h1>
+  <p class="muted">Mesmas telas e funções; muda só a aparência. Pensada para uso o dia inteiro no computador por uma equipe de escritório.</p>
+
+  <div class="intro" style="margin-top:20px">
+    <div class="card">
+      <table class="cmp">
+        <tr><th></th><th>Hoje (lúdico)</th><th>Proposta (sóbria)</th></tr>
+        <tr><td>Fonte</td><td>Nunito, arredondada</td><td>Inter, neutra e muito legível em tamanho pequeno</td></tr>
+        <tr><td>Ícones</td><td>Emojis em menus e títulos</td><td>Ícones de linha monocromáticos; emoji nenhum na interface</td></tr>
+        <tr><td>Cores</td><td>Azul vivo + amarelo, fundos coloridos</td><td>Cinzas neutros, um azul de destaque, cor só para status</td></tr>
+        <tr><td>Cantos</td><td>Bem arredondados (16–20px)</td><td>Discretos (6px botões, 10px cartões)</td></tr>
+        <tr><td>Navegação</td><td>Barra clara, item ativo azul cheio</td><td>Barra escura fixa, item ativo com filete</td></tr>
+        <tr><td>Densidade</td><td>Espaçada</td><td>Mais informação por tela (listas e tabelas)</td></tr>
+        <tr><td>Movimento</td><td>Balanços, “pop” e quiques</td><td>Só transições curtas de estado</td></tr>
+      </table>
+    </div>
+    <div class="card pad">
+      <h2>Paleta</h2>
+      <p class="muted" style="font-size:13px">A cor aparece onde comunica algo: status do caso, ação da IA, alerta. O resto é neutro.</p>
+      <div class="swatches">
+        <span class="sw"><i style="background:#0f172a"></i>Navegação</span>
+        <span class="sw"><i style="background:#1d4ed8"></i>Destaque</span>
+        <span class="sw"><i style="background:#f6f7f9"></i>Fundo</span>
+        <span class="sw"><i style="background:#e5e7eb"></i>Bordas</span>
+        <span class="sw"><i style="background:#15803d"></i>Concluído</span>
+        <span class="sw"><i style="background:#b45309"></i>Atenção</span>
+        <span class="sw"><i style="background:#b91c1c"></i>Erro</span>
+        <span class="sw"><i style="background:#6d28d9"></i>IA</span>
+      </div>
+      <h2 style="margin-top:18px">Tipografia</h2>
+      <div style="font-size:22px;font-weight:700;letter-spacing:-.01em">Caixa de entrada</div>
+      <div style="font-size:14px">Texto padrão para mensagens, formulários e tabelas.</div>
+      <div class="micro" style="margin-top:4px">Rótulo de seção</div>
+    </div>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="on" data-v="inbox">Caixa de entrada</button>
+    <button data-v="casos">Casos</button>
+    <button data-v="painel">Painel</button>
+  </div>
+
+  <div class="app-scroll"><div class="app">
+    <aside class="nav">
+      <div class="brand"><div class="mark">DS</div><div><b>Despachante Soares</b><small>Atendimento</small></div></div>
+      <div id="navlinks"></div>
+      <div class="foot"><span class="dot" style="background:#22c55e"></span><span>Lia · Copiloto</span><span style="margin-left:auto;color:#64748b">Diego</span></div>
+    </aside>
+
+    <section class="main">
+      <!-- CAIXA DE ENTRADA -->
+      <div class="view on" id="v-inbox" style="flex-direction:column">
+        <div class="topbar"><h3>Caixa de entrada</h3><div class="sp"></div><div class="search">Buscar nome, telefone ou placa</div></div>
+        <div style="display:flex;flex:1;min-height:0">
+          <div class="list">
+            <div class="filters"><span class="chip on">Todas</span><span class="chip">Humano · 1</span><span class="chip">Rascunhos · 2</span><span class="chip">Encerradas</span></div>
+            <div class="conv on"><div class="av">AS</div><div style="min-width:0;flex:1">
+              <div class="t">Ana Souza<span class="time">01:10</span></div>
+              <div class="pv">Meu nome é Ana Souza, o CPF é 529…</div>
+              <div class="meta"><span class="src">Recepção</span><span class="badge ai">2 rascunhos</span></div></div></div>
+            <div class="conv"><div class="av">CM</div><div style="min-width:0;flex:1">
+              <div class="t">Carlos Mendes<span class="time">00:42</span></div>
+              <div class="pv">Quero falar com uma pessoa</div>
+              <div class="meta"><span class="src">Financeiro</span><span class="badge warn">Aguardando humano</span></div></div></div>
+            <div class="conv"><div class="av">RP</div><div style="min-width:0;flex:1">
+              <div class="t">Revenda Paraná Motors<span class="time">ontem</span></div>
+              <div class="pv">Segue o ATPV-e do Onix</div>
+              <div class="meta"><span class="src">Recepção</span><span class="badge">3 casos</span></div></div></div>
+            <div class="conv"><div class="av">JL</div><div style="min-width:0;flex:1">
+              <div class="t">(41) 99812-4471<span class="time">ontem</span></div>
+              <div class="pv">Obrigado! 👍</div>
+              <div class="meta"><span class="src">Recepção</span><span class="badge ok">Enviada</span></div></div></div>
+          </div>
+
+          <div class="thread">
+            <div class="thead"><div class="av">AS</div><div><b>Ana Souza</b><div class="muted" style="font-size:12px">(41) 93483-1108</div></div>
+              <div class="seg"><span>Automático</span><span class="on">Copiloto</span><span>Manual</span></div>
+              <button class="btn sm">Sugerir resposta</button></div>
+            <div class="msgs">
+              <div class="bub">Oi, boa tarde! Comprei um carro e quero passar pro meu nome<div class="ft">01:08</div></div>
+              <div class="bub out"><div class="who">Lia (IA)</div>Que bom, parabéns pela compra! Vou te ajudar com a transferência. Já anotei a placa <b>ABC1D23</b>.<div class="ft">Recepção · 01:09 ✓✓</div></div>
+              <div class="bub"><div class="who" style="color:var(--ink-3)">Áudio · 0:15</div><i style="color:var(--ink-2)">“Meu nome é Ana Souza, o CPF é 529 982 247 25. O carro é um Gol 2015. Quanto vai custar?”</i><div class="ft">01:10</div></div>
+              <div class="bub out draft"><div class="who"><span class="badge ai">Rascunho</span>Lia (IA)</div>Sobre o valor: o <b>honorário é R$ 280,00</b>. Taxa do Detran, vistoria e débitos a equipe confirma após consultar a placa.
+                <div class="acts"><button class="btn sm primary">Aprovar e enviar</button><button class="btn sm">Editar</button><button class="btn sm ghost">Descartar</button></div></div>
+            </div>
+            <div class="compose"><div class="in">Responder como atendente…</div><button class="btn">Recepção ▾</button><button class="btn primary">Enviar</button></div>
+          </div>
+
+          <div class="side">
+            <div class="sec">
+              <div class="micro">Caso</div>
+              <div style="display:flex;align-items:center;gap:8px;margin-top:6px"><b>TRF-0001</b><span class="muted">Transferência</span><span class="plate" style="margin-left:auto"><span></span><span>ABC-1D23</span></span></div>
+              <div class="steps"><i class="done"></i><i class="cur"></i><i></i><i></i><i></i><i></i></div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;margin-top:6px"><span>Coleta de documentos</span><span class="muted">4 de 8</span></div>
+              <dl class="kv"><dt>Comprador</dt><dd>Ana Souza</dd><dt>CPF</dt><dd>529.982.247-25 <span class="badge ok">validado</span></dd><dt>Renavam</dt><dd class="muted">pendente</dd><dt>ATPV-e</dt><dd class="muted">pendente</dd></dl>
+            </div>
+            <div class="sec">
+              <div style="display:flex;align-items:center;gap:8px"><div class="micro">Raio-X da decisão</div><span class="badge ok" style="margin-left:auto">Confiança 82%</span></div>
+              <div class="why">Citei só o honorário da tabela (R$ 280); taxas ficaram “a confirmar”. Registrei nome e CPF. A triagem estava completa, então avancei para Coleta. O WhatsApp está como “Diego Teste”: vale conferir o vínculo.</div>
+              <ul class="acts-list">
+                <li><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/></svg><span>Consultou o serviço <b>Transferência</b></span></li>
+                <li><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg><span>Registrou nome e CPF</span></li>
+                <li><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span>Mudou a fase para <b>Coleta</b></span></li>
+                <li><svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span>Registrou orçamento: R$ 280</span></li>
+              </ul>
+              <div class="row-gap" style="margin-top:12px"><button class="btn sm">Correto</button><button class="btn sm">Corrigir</button><button class="btn sm ghost">Ver contexto</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASOS -->
+      <div class="view" id="v-casos" style="flex-direction:column">
+        <div class="topbar"><h3>Casos</h3><span class="badge">Transferência</span><span class="badge" style="background:transparent">Licenciamento</span><span class="badge" style="background:transparent">CNH</span><div class="sp"></div><button class="btn primary">Novo caso</button></div>
+        <div class="board">
+          <div class="col"><h4><span class="dot" style="background:#9ca3af"></span>Triagem<span class="n">1</span></h4>
+            <div class="kc"><div class="top"><b>TRF-0004</b><span style="margin-left:auto">2h</span></div><div class="nm">Marcos Lima</div><div class="row"><span class="plate"><span></span><span>QWE-4R56</span></span></div><div class="bar"><i style="width:12%"></i></div></div></div>
+          <div class="col"><h4><span class="dot" style="background:#1d4ed8"></span>Coleta de documentos<span class="n">2</span></h4>
+            <div class="kc"><div class="top"><b>TRF-0001</b><span class="badge ai" style="margin-left:auto">IA moveu</span></div><div class="nm">Ana Souza</div><div class="row"><span class="plate"><span></span><span>ABC-1D23</span></span><span class="badge warn">orçamento enviado</span></div><div class="bar"><i style="width:50%"></i></div></div>
+            <div class="kc"><div class="top"><b>TRF-0003</b><span style="margin-left:auto">1d</span></div><div class="nm">Revenda Paraná Motors</div><div class="row"><span class="plate"><span></span><span>RTY-7U89</span></span></div><div class="bar"><i style="width:75%"></i></div></div></div>
+          <div class="col"><h4><span class="dot" style="background:#b45309"></span>Orçamento e pagamento<span class="n">1</span></h4>
+            <div class="kc" style="box-shadow:inset 0 0 0 1px #ddd6fe"><div class="top"><b>TRF-0002</b><span class="badge ai" style="margin-left:auto">IA pediu aprovação</span></div><div class="nm">Carlos Mendes</div><div class="row"><span class="plate"><span></span><span>XYZ-9A88</span></span><span class="badge ok">pago</span></div><div class="bar"><i style="width:100%"></i></div></div></div>
+          <div class="col"><h4><span class="dot" style="background:#0e7490"></span>Protocolado no Detran<span class="n">0</span></h4></div>
+          <div class="col"><h4><span class="dot" style="background:#15803d"></span>Concluído<span class="n">5</span></h4></div>
+        </div>
+      </div>
+
+      <!-- PAINEL -->
+      <div class="view" id="v-painel" style="flex-direction:column">
+        <div class="topbar"><h3>Painel</h3><span class="badge">Fora do horário · reabre 08:00</span><div class="sp"></div></div>
+        <div class="dash">
+          <div class="kpis">
+            <div class="kpi"><div class="micro">Conversas hoje</div><div class="v">23</div><div class="d">+4 em relação a ontem</div></div>
+            <div class="kpi"><div class="micro">Decisões da IA</div><div class="v">41</div><div class="d">~2 h de atendimento poupadas</div></div>
+            <div class="kpi"><div class="micro">Aguardando humano</div><div class="v" style="color:var(--warn)">1</div><div class="d">há 12 min</div></div>
+            <div class="kpi"><div class="micro">Casos em andamento</div><div class="v">9</div><div class="d">3 no Detran</div></div>
+          </div>
+          <div class="grid2">
+            <div class="card"><div class="pad" style="padding-bottom:6px"><h2 style="margin:0">Pendências</h2></div>
+              <div class="pend">Rascunhos da IA para aprovar<b>2</b></div>
+              <div class="pend">Mudanças de fase pedidas pela IA<b>1</b></div>
+              <div class="pend">Documentos para conferir<b>3</b></div>
+              <div class="pend">Propostas do Instrutor<b>1</b></div></div>
+            <div class="card"><div class="pad" style="padding-bottom:6px"><h2 style="margin:0">Casos recentes</h2></div>
+              <table class="tbl"><tr><th>Código</th><th>Cliente</th><th>Serviço</th><th>Fase</th><th>Atualizado</th></tr>
+                <tr><td><b>TRF-0001</b></td><td>Ana Souza</td><td>Transferência</td><td><span class="badge accent">Coleta</span></td><td class="muted">agora</td></tr>
+                <tr><td><b>TRF-0002</b></td><td>Carlos Mendes</td><td>Transferência</td><td><span class="badge warn">Orçamento</span></td><td class="muted">12 min</td></tr>
+                <tr><td><b>LIC-0007</b></td><td>João Lopes</td><td>Licenciamento</td><td><span class="badge">Consulta</span></td><td class="muted">ontem</td></tr>
+                <tr><td><b>CNH-0003</b></td><td>Patrícia Rocha</td><td>CNH</td><td><span class="badge ok">Concluído</span></td><td class="muted">ontem</td></tr></table></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div></div>
+
+  <div class="kit">
+    <div class="card pad"><h2>Botões</h2>
+      <div class="row-gap"><button class="btn primary">Salvar</button><button class="btn">Cancelar</button><button class="btn ghost">Descartar</button></div>
+      <div class="row-gap" style="margin-top:10px"><button class="btn sm primary">Aprovar e enviar</button><button class="btn sm">Editar</button></div></div>
+    <div class="card pad"><h2>Status</h2>
+      <div class="row-gap"><span class="badge ok">Validado</span><span class="badge warn">Aguardando humano</span><span class="badge bad">Falhou</span><span class="badge ai">Rascunho da IA</span><span class="badge accent">Coleta</span><span class="badge">Pendente</span></div></div>
+    <div class="card pad"><h2>Formulário</h2>
+      <label class="field"><span>URL base</span><div class="input focus">https://newapi.exemplo.com/v1</div></label>
+      <label class="field"><span>Modelo de atendimento</span><div class="input">claude-sonnet-5-5</div></label></div>
+  </div>
+
+  <p class="note">Se aprovar, aplico esta identidade em todo o painel: fonte, cores, ícones, cantos e densidade. Nada muda no funcionamento. Dá para ajustar a cor de destaque, ou usar a barra lateral clara em vez da escura.</p>
+</div>
+
+<script>
+  const icons = {
+    painel: '<path d="M3 3h7v9H3zM14 3h7v5h-7zM14 12h7v9h-7zM3 16h7v5H3z"/>',
+    inbox: '<path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5h13L22 12v7a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-7z"/>',
+    sim: '<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/>',
+    casos: '<rect x="3" y="3" width="5" height="18" rx="1"/><rect x="10" y="3" width="5" height="12" rx="1"/><rect x="17" y="3" width="4" height="8" rx="1"/>',
+    clientes: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/>',
+    ensinar: '<path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/>',
+    conhecimento: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/>',
+    servicos: '<path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/>',
+    testes: '<circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/>',
+    conexoes: '<path d="M9 2v6M15 2v6M6 8h12v4a6 6 0 0 1-12 0z"/><path d="M12 18v4"/>',
+    config: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>'
+  };
+  const nav = [
+    [null, [['painel', 'Painel', 'painel'], ['inbox', 'Caixa de entrada', 'inbox', 3], ['sim', 'Simulador'], ['casos', 'Casos', 'casos', 1], ['clientes', 'Clientes']]],
+    ['Ensinar a IA', [['ensinar', 'Ensinar', null, 1], ['conhecimento', 'Conhecimento'], ['servicos', 'Serviços'], ['testes', 'Testes']]],
+    ['Sistema', [['conexoes', 'Conexões'], ['config', 'Configurações']]],
+  ];
+  const el = document.getElementById('navlinks');
+  el.innerHTML = nav.map(([sec, items]) =>
+    (sec ? `<div class="sec">${sec}</div>` : '') +
+    items.map(([ic, label, view, count]) =>
+      `<a href="#" data-v="${view || ''}"><svg viewBox="0 0 24 24">${icons[ic]}</svg>${label}${count ? `<span class="count">${count}</span>` : ''}</a>`
+    ).join('')
+  ).join('');
+
+  function show(v) {
+    document.querySelectorAll('.view').forEach(x => x.classList.toggle('on', x.id === 'v-' + v));
+    document.querySelectorAll('.tabs button').forEach(b => b.classList.toggle('on', b.dataset.v === v));
+    document.querySelectorAll('.nav a').forEach(a => a.classList.toggle('on', a.dataset.v === v));
+  }
+  document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => show(b.dataset.v));
+  document.querySelectorAll('.nav a').forEach(a => a.onclick = e => { e.preventDefault(); if (a.dataset.v) show(a.dataset.v); });
+  show('inbox');
+</script>
+</body>
+</html>
