@@ -58,11 +58,11 @@ Sistema de atendimento de WhatsApp com IA + CRM, feito para um despachante de Ca
 2. Em **Root Directory**, selecione `apps/web` e deixe habilitada a opção **Include source files outside of the Root Directory** para incluir `packages/shared` e o lockfile da raiz. Mantenha os comandos de instalação, build e diretório de saída nos padrões da Vercel.
 3. Em **Environment Variables**, cadastre as três variáveis em **Production**. Configure **Preview** apenas se quiser usar o painel nos deploys de prévia.
 
-   | Variável | Valor |
-   | --- | --- |
-   | `NEXT_PUBLIC_SUPABASE_URL` | `https://izlctgakeabmrlkfoenm.supabase.co` |
-   | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Chave publishable em **Supabase → Project Settings → API Keys** |
-   | `SUPABASE_SERVICE_ROLE_KEY` | Chave secret (`sb_secret_…`) ou `service_role` legada da mesma página. Marque como **Sensitive** na Vercel. |
+   | Variável | Valor | Tipo na Vercel |
+   | --- | --- | --- |
+   | `NEXT_PUBLIC_SUPABASE_URL` | `https://izlctgakeabmrlkfoenm.supabase.co` | Config |
+   | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Chave publishable em **Supabase → Project Settings → API Keys** | Config |
+   | `SUPABASE_SERVICE_ROLE_KEY` | Chave secret (`sb_secret_…`) ou `service_role` legada da mesma página | Secret |
 
 4. Faça o deploy. Em **Supabase → Authentication → URL Configuration**, defina **Site URL** com a URL de produção do painel.
 
